@@ -1,0 +1,79 @@
+{% load static %}
+
+
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <title>Hello, world!</title>
+</head>
+
+<body>
+    <header>
+
+        <nav class="navbar navbar-expand-lg navbar-light bg-light ">
+            <div class="container">
+                <a class="navbar-brand">
+                    <img src="{% static 'text.png'%}" class="d-inline-block align-top" height="50px" width="50px"> Product Hunt</a>
+                <button class="navbar-toggler" data-target="#my-nav" data-toggle="collapse" aria-controls="my-nav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+                <div class="collapse navbar-collapse" id="">
+                    <div class="navbar-nav ml-auto">
+
+                        {% if user.is_authenticated %}
+                            <p class=" nav-item nav-link  " >Well Come {{ user.username }}</p>
+                            <a href="{% url 'create' %} " class="nav-item nav-link "> Creat Post </a>
+                            <a href="javascript:{document.getElementById('logout').submit()}" class="nav-item nav-link"> log out</a>
+                            <form id='logout' method="POST" action="{% url 'logout' %}">
+                                {% csrf_token %}
+                                <input type="hidden">
+                            </form>
+
+                        {% else %}
+                        <a href="{% url 'singup' %} " class="nav-item nav-link "> Sign Up</a>
+                        <a href="{% url 'login' %} " class="nav-item nav-link "> Login</a> {% endif %}
+
+                    </div>
+
+                </div>
+            </div>
+        </nav>
+
+    </header>
+
+    <div class="container ">
+        {% block content %} {% endblock %}
+
+    </div>
+
+
+
+
+    <footer class='text-muted'>
+        <div class="container text-center ">
+            <p> A Nich Day {% now "Y " %}</p>
+
+        </div>
+
+        </div>
+    </footer>
+
+
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js " integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo " crossorigin="anonymous "></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js " integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1 " crossorigin="anonymous "></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js " integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM " crossorigin="anonymous "></script>
+</body>
+
+</html>

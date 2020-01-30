@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block content %}
+    {% if error %}
+        {{ error }}
+<br/>
+    {% endif %}
+<h1>Sign Up</h1>
+<form action="{% url 'singup' %}" method="POST">
+    {% csrf_token %} User Name:
+    <br/>
+    <input type="text" name="username">
+    <br/> Password:
+    <br/>
+    <input type="password" name="password1">
+    <br/> Confirm Password:
+    <br/>
+    <input type="password" name="password2">
+    <br/>
+    <br/>
+
+    <input type="submit" value="Sign Up!" class="btn btn-primary">
+    <p>Have alredy account <a href="{% url 'login' %}">login </a></p>
+</form>
+{% endblock %}
